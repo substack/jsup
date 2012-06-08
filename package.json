@@ -1,22 +1,21 @@
 {
     "name" : "jsup",
-    "version" : "0.0.0",
+    "version" : "0.0.1",
     "description" : "modify json files in-place, preserving formatting",
     "main" : "index.js",
     "directories" : {
-        "lib" : ".",
         "example" : "example",
         "test" : "test"
     },
     "dependencies" : {
-        "burrito" : ">=0.2.5 <0.3",
-        "traverse" : ">=0.4.3 <0.5"
+        "burrito" : "~0.2.12",
+        "traverse" : "~0.6.1"
     },
     "devDependencies" : {
-        "expresso" : "0.7.x"
+        "tap" : "~0.2.5"
     },
     "scripts" : {
-        "test" : "expresso"
+        "test" : "tap test/*.js"
     },
     "repository" : {
         "type" : "git",

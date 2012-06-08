@@ -1,13 +1,13 @@
-var assert = require('assert');
-var fs = require('fs');
 var jsup = require('../');
+var test = require('tap').test;
+var fs = require('fs');
 
 var src = fs.readFileSync(__dirname + '/stub.json', 'utf8');
 
-exports.stub = function () {
-    assert.equal(jsup(src).stringify(), src);
+test('stub', function (t) {
+    t.equal(jsup(src).stringify(), src);
     
-    assert.equal(
+    t.equal(
         jsup(src)
             .set([ 'a', 2 ], 'Three')
             .stringify()
@@ -15,7 +15,7 @@ exports.stub = function () {
         src.replace('"three"', '"Three"')
     );
     
-    assert.equal(
+    t.equal(
         jsup(src)
             .set([ 'a', 2 ], 'Three')
             .set([ 'c' ], 'lul')
@@ -23,22 +23,24 @@ exports.stub = function () {
         ,
         src.replace('three', 'Three').replace('444444', '"lul"')
     );
-};
+    
+    t.end();
+});
 
-exports.get = function () {
+test('get', function (t) {
     var js = jsup(src)
         .set([ 'a', 2 ], 3)
         .set([ 'c' ], 'lul')
     ;
-    assert.equal(js.get([ 'a', 0 ]), 1);
-    assert.equal(js.get([ 'a', 1 ]), 2);
-    assert.equal(js.get([ 'a', 2 ]), 3);
-    assert.deepEqual(js.get([ 'a' ]), [ 1, 2, 3 ]);
+    t.equal(js.get([ 'a', 0 ]), 1);
+    t.equal(js.get([ 'a', 1 ]), 2);
+    t.equal(js.get([ 'a', 2 ]), 3);
+    t.same(js.get([ 'a' ]), [ 1, 2, 3 ]);
     
-    assert.equal(js.get([ 'c' ]), 'lul');
-    assert.ok(js.get([ 'd' ]) === null);
+    t.equal(js.get([ 'c' ]), 'lul');
+    t.ok(js.get([ 'd' ]) === null);
     
-    assert.deepEqual(
+    t.same(
         js.get([]),
         {
             a : [ 1, 2, 3 ],
@@ -48,7 +50,7 @@ exports.get = function () {
         }
     );
     
-    assert.deepEqual(
+    t.same(
         js.get(),
         {
             a : [ 1, 2, 3 ],
@@ -57,4 +59,6 @@ exports.get = function () {
             d : null
         }
     );
-};
+    
+    t.end();
+});
