@@ -3,6 +3,8 @@ jsup
 
 Update json strings in-place.
 
+[![build status](https://secure.travis-ci.org/substack/jsup.png)](http://travis-ci.org/substack/jsup)
+
 example
 =======
 
