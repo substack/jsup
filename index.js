@@ -45,7 +45,7 @@ var jsup = module.exports = function (src) {
         var start = c[0].start.pos - 2;
         
         if (c[0].start.pos === c[0].end.pos) {
-            var end = start + c[1].toString().length;
+            var end = start + JSON.stringify(c[1]).length;
         }
         else {
             var end = c[0].end.pos - 1;

@@ -9,19 +9,19 @@ exports.stub = function () {
     
     assert.equal(
         jsup(src)
-            .set([ 'a', 2 ], 3)
+            .set([ 'a', 2 ], 'Three')
             .stringify()
         ,
-        src.replace('333333', '3')
+        src.replace('"three"', '"Three"')
     );
     
     assert.equal(
         jsup(src)
-            .set([ 'a', 2 ], 3)
+            .set([ 'a', 2 ], 'Three')
             .set([ 'c' ], 'lul')
             .stringify()
         ,
-        src.replace('333333', '3').replace('444444', '"lul"')
+        src.replace('three', 'Three').replace('444444', '"lul"')
     );
 };
 
