@@ -24,6 +24,14 @@ test('stub', function (t) {
         src.replace('three', 'Three').replace('444444', '"lul"')
     );
     
+    t.equal(
+        jsup(src)
+            .set([ 'e', 'foo' ], 'baz')
+            .stringify()
+        ,
+        src.replace('bar', 'baz')
+    );
+    
     t.end();
 });
 
